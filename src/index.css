@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 24 27% 95%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Updated primary to match #123C69 (navy) */
+    --primary: 213 70% 24%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Updated secondary to match #EEE2DC (light beige) */
+    --secondary: 18 27% 90%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Updated accent to match #AC3B61 (burgundy) */
+    --accent: 343 49% 45%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Updated border to match #BAB2B5 (gray) */
+    --border: 300 3% 71%;
+    --input: 300 3% 71%;
+    /* Updated ring to match primary */
+    --ring: 213 70% 24%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 5% 26%;
+    /* Updated sidebar primary to match #123C69 */
+    --sidebar-primary: 213 70% 24%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    /* Updated sidebar ring to match primary */
+    --sidebar-ring: 213 70% 24%;
+  }
+
+  .dark {
+    --background: 213 70% 24%; /* #123C69 */
+    --foreground: 18 27% 90%; /* #EEE2DC */
+
+    --card: 213 70% 24%; /* #123C69 */
+    --card-foreground: 18 27% 90%; /* #EEE2DC */
+
+    --popover: 213 70% 24%; /* #123C69 */
+    --popover-foreground: 18 27% 90%; /* #EEE2DC */
+
+    /* Updated primary to match #EDC7B7 (peach) */
+    --primary: 19 58% 82%;
+    --primary-foreground: 222 47% 11%;
+
+    /* Updated secondary to match #BAB2B5 (gray) */
+    --secondary: 300 3% 71%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 213 30% 32%; /* Darker version of #123C69 */
+    --muted-foreground: 18 15% 85%;
+
+    /* Updated accent to match #AC3B61 (burgundy) */
+    --accent: 343 49% 45%;
+    --accent-foreground: 18 27% 90%; /* #EEE2DC */
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 18 27% 90%; /* #EEE2DC */
+
+    --border: 300 3% 61%; /* Darker version of #BAB2B5 */
+    --input: 300 3% 61%; /* Darker version of #BAB2B5 */
+    /* Updated ring to match #EDC7B7 */
+    --ring: 19 58% 82%;
+
+    --sidebar-background: 213 70% 20%; /* Darker #123C69 */
+    --sidebar-foreground: 18 27% 90%; /* #EEE2DC */
+    /* Updated sidebar primary to match #EDC7B7 */
+    --sidebar-primary: 19 58% 82%;
+    --sidebar-primary-foreground: 213 70% 24%; /* #123C69 */
+    --sidebar-accent: 213 30% 32%; /* Darker version of #123C69 */
+    --sidebar-accent-foreground: 18 27% 90%; /* #EEE2DC */
+    --sidebar-border: 213 40% 35%; /* Even darker version of #123C69 */
+    /* Updated sidebar ring to match #EDC7B7 */
+    --sidebar-ring: 19 58% 82%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "ss01", "ss03";
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom Component Styles */
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-glass dark:bg-[#2C2E3A]/70 dark:border-white/10;
+  }
+  
+  .shimmer-effect {
+    @apply bg-gradient-to-r from-transparent via-white/10 to-transparent bg-[length:200%_100%] animate-shimmer;
+  }
+  
+  .skill-tag {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-all;
+  }
+  
+  .navigation-link {
+    @apply relative px-3 py-2 text-muted-foreground transition-colors hover:text-foreground rounded-md;
+  }
+  
+  .navigation-link.active {
+    @apply text-foreground;
+  }
+  
+  .navigation-link.active::after {
+    content: "";
+    @apply absolute bottom-0 left-0 h-0.5 w-full bg-primary rounded-full;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary/50 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30 transition-colors;
+  }
+  
+  /* Page Transitions */
+  .page-transition-enter {
+    @apply opacity-0;
+  }
+  
+  .page-transition-enter-active {
+    @apply opacity-100 transition-opacity duration-300;
+  }
+  
+  .page-transition-exit {
+    @apply opacity-100;
+  }
+  
+  .page-transition-exit-active {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+}
